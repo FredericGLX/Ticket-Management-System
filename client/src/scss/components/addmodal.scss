@@ -1,0 +1,17 @@
+.modal-container {
+  position: relative;
+  width: 60vw;
+  height: 90vh;
+  z-index: 100;
+  background-color: #fff;
+  border-radius: 5px;
+  margin: 0;
+  overflow-y: auto;
+}
+
+.modal-close-icon {
+  position: absolute;
+  right: 0;
+  margin: 5px;
+  cursor: pointer;
+}

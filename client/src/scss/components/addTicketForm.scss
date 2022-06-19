@@ -1,0 +1,51 @@
+.issue-form-container {
+    h1 {
+      margin-top: 1rem;
+      color: #333;
+      text-align: center;
+      font-weight: 600;
+      }
+
+      .issue-form {
+        display: flex;
+        flex-direction: column;
+        margin: 1rem 2rem;
+      }
+
+      input, textarea {
+        margin-bottom: 1rem;
+        outline: none;
+      }
+
+      .input-description {
+        height: 16vh;
+      }
+
+      // .react-select-container { 
+      //   #react-select-2-listbox {
+      //     font-size: 14px;
+      //   }
+      // }
+
+      .form-submit-btn {
+        background-color: #fff;
+        height: 2rem;
+        margin-top: 1rem;
+        max-width: 5rem;
+        border: 1px solid #333;
+        border-radius: 5px;
+        color: #333;
+        box-shadow: 0px 2px 3px #ddd;
+        cursor: pointer;
+        transition: all .3s;
+      
+        &:hover {
+        box-shadow: 0px 2px 6px #999;
+        }
+        &:active {
+          position: relative;
+          top: 1px;
+        }
+        
+      }
+  }

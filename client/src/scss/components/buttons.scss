@@ -1,0 +1,19 @@
+.btn-add-issue {
+  background-color: #fff;
+  height: 2rem;
+  min-width: 5rem;
+  border: 1px solid #333;
+  border-radius: 5px;
+  color: #333;
+  box-shadow: 0px 2px 3px #ddd;
+  cursor: pointer;
+  transition: all .3s;
+
+  &:hover {
+  box-shadow: 0px 2px 6px #999;
+  }
+  &:active {
+    position: relative;
+    top: 1px;
+  }
+}
