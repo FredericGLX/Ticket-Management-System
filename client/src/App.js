@@ -5,6 +5,7 @@ import Profile from './components/Profile';
 import Project from './components/Project';
 import Projects from './components/Projects';
 import ItemDetails from './components/ItemDetails';
+import AssignedToMe from './components/AssignedToMe';
 import PageNotFound from './components/PageNotFound';
 import ProtectedRoutes from './helper/ProtectedRoutes';
 import { Routes, Route } from 'react-router-dom';
@@ -35,6 +36,7 @@ const App = () => {
             element={<ItemDetails type={'ticket'} />}
           />
           <Route path="profile" element={<Profile />} />
+          <Route path="assigned" element={<AssignedToMe />} />
         </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>

@@ -10,7 +10,6 @@ import { useParams } from 'react-router-dom';
 
 const Project = () => {
   const [projects, setProjects] = useState([]);
-  const [tickets, setTickets] = useState([]);
   const { projectId } = useParams();
 
   useEffect(() => {

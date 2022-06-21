@@ -78,6 +78,8 @@ const ItemDetails = ({ type }) => {
     }
   }, []);
 
+  console.log(users);
+
   const formik = useFormik({
     initialValues: {
       title: item.title,

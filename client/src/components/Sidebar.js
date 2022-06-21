@@ -27,7 +27,7 @@ const Navbar = ({ addButton }) => {
             </li>
 
             <li>
-              <Link to={'#'}>Assigned to me</Link>
+              <Link to={'/assigned'}>Assigned to me</Link>
             </li>
           </>
         ) : (
