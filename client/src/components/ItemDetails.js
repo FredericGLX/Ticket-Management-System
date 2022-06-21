@@ -13,7 +13,6 @@ import { useParams } from 'react-router-dom';
 import PageLayout from './PageLayout';
 
 const ItemDetails = ({ type }) => {
-  const [users, setUsers] = useState([]);
   const [allUsers, setAllUsers] = useState([]);
   const [assignedUsers, setAssignedUsers] = useState([]);
   const [editable, setEditable] = useState(false);
