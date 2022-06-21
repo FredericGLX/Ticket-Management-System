@@ -14,26 +14,20 @@ import PageLayout from './PageLayout';
 
 const ItemDetails = ({ type }) => {
   const [users, setUsers] = useState([]);
+  const [allUsers, setAllUsers] = useState([]);
   const [assignedUsers, setAssignedUsers] = useState([]);
   const [editable, setEditable] = useState(false);
   const [item, setItem] = useState([]);
   const { projectId, ticketId } = useParams();
 
   useEffect(() => {
-    // Get users currently assigned to the project
-    ProjectService.get(projectId).then(async (res) => {
-      const userArray = [];
-      const userId = res.data.assigned;
-      await Promise.all(
-        userId.map(async (user) => {
-          await UserService.get(user).then((res) => {
-            userArray.push(res.data);
-          });
-        })
+    // Get all users
+    UserService.getAll().then(async (res) => {
+      // Sort usernames by alphabetical order
+      const userlist = res.data.sort((a, b) =>
+        a.firstName.localeCompare(b.firstName)
       );
-      // Sort Users array by alphabetical order
-      userArray.sort((a, b) => a.firstName.localeCompare(b.firstName));
-      setUsers(userArray);
+      setAllUsers(userlist);
     });
     if (type === 'ticket') {
       // Get the ticket object
@@ -77,8 +71,6 @@ const ItemDetails = ({ type }) => {
       });
     }
   }, []);
-
-  console.log(users);
 
   const formik = useFormik({
     initialValues: {
@@ -130,7 +122,7 @@ const ItemDetails = ({ type }) => {
             )}
           </h1>
           <div className="item-users">
-            Assigned to:{' '}
+            Assigned to:
             {!editable ? (
               <>
                 {assignedUsers.map(
@@ -142,7 +134,7 @@ const ItemDetails = ({ type }) => {
               </>
             ) : (
               <SelectList
-                options={convertToReactSelectObject(users)}
+                options={convertToReactSelectObject(allUsers)}
                 defaultValue={item.assigned}
                 onChange={(assignedUser) => {
                   const newUsers = assignedUser.map((e) => e.value);
