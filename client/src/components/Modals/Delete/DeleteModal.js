@@ -3,6 +3,7 @@ import '../../../scss/components/deletemodal.scss';
 import TicketService from '../../../services/ticket.service';
 import ProjectService from '../../../services/project.service';
 import { removeItemOnce } from '../../../helper/helper';
+import { useNavigate } from 'react-router-dom';
 
 const DeleteModal = ({
   open,
@@ -12,6 +13,8 @@ const DeleteModal = ({
   ticketId,
   type,
 }) => {
+  const navigate = useNavigate();
+
   if (!open) return null;
 
   const handleDelete = () => {
@@ -22,13 +25,13 @@ const DeleteModal = ({
       const removedTicket = removeItemOnce(project.tickets, ticketId);
       project.tickets = removedTicket;
       ProjectService.update(project._id, project).then(() => {
-        window.location.reload();
+        navigate(`/projects/${project._id}`);
       });
     }
     if (type === 'project') {
       ProjectService.remove(project._id);
       TicketService.removeAllFromProject(project._id).then(() => {
-        window.location.reload();
+        navigate('/projects');
       });
     }
   };

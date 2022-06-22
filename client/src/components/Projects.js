@@ -32,7 +32,7 @@ const Projects = () => {
                     <span>See tickets</span>
                   </Link>
                   <Link to={`/projects/${project._id}/details`}>Details</Link>
-                  <DeleteBtn project={project} type={'project'} />
+                  <DeleteBtn project={project} type={'project'} icon={true} />
                 </div>
               );
             })

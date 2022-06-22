@@ -11,6 +11,7 @@ import { status, convertToReactSelectObject } from '../helper/helper';
 import { useFormik } from 'formik';
 import { useParams } from 'react-router-dom';
 import PageLayout from './PageLayout';
+import DeleteBtn from './Buttons/DeleteBtn';
 
 const ItemDetails = ({ type }) => {
   const [allUsers, setAllUsers] = useState([]);
@@ -81,7 +82,6 @@ const ItemDetails = ({ type }) => {
     validateOnBlur: false,
     validateOnChange: false,
     onSubmit: (data) => {
-      console.log('dqwqw');
       if (type === 'ticket') {
         TicketService.update(ticketId, data).then(() => {
           window.location.reload();
@@ -161,6 +161,15 @@ const ItemDetails = ({ type }) => {
           <div className="item-edit">
             Edit
             <FiEdit className="edit-icon" onClick={handleEditable} />
+          </div>
+          <div className="item-delete">
+            Delete{' '}
+            <DeleteBtn
+              type={type}
+              ticketId={ticketId}
+              project={type === 'project' ? item : ''}
+              icon={false}
+            />
           </div>
           <p
             className={`item-description ${editable ? 'edit-mode' : ' '}`}

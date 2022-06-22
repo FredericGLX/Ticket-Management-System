@@ -36,6 +36,7 @@ const Tickets = ({ project }) => {
                       project={project}
                       ticketId={ticket._id}
                       type={'ticket'}
+                      icon={true}
                     />
                   </>
                 </div>

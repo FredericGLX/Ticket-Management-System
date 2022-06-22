@@ -4,7 +4,7 @@ import DeleteModal from '../Modals/Delete/DeleteModal';
 import useClickOutside from '../../hooks/useClickOutside';
 import { IoMdClose } from 'react-icons/io';
 
-const DeleteBtn = ({ project, ticketId, type }) => {
+const DeleteBtn = ({ project, ticketId, type, icon }) => {
   const [isOpen, setIsOpen] = useState(false);
   const onClose = () => {
     setIsOpen(false);
@@ -15,11 +15,17 @@ const DeleteBtn = ({ project, ticketId, type }) => {
   });
 
   return (
-    <div className="delete-btn">
-      <IoMdClose
-        className="close-icon-ticket"
-        onClick={() => setIsOpen(true)}
-      />
+    <>
+      {icon ? (
+        <IoMdClose
+          className="close-icon-ticket"
+          onClick={() => setIsOpen(true)}
+        />
+      ) : (
+        <div className="close-text-ticket" onClick={() => setIsOpen(true)}>
+          Delete
+        </div>
+      )}
       <DeleteModal
         open={isOpen}
         onClose={onClose}
@@ -28,7 +34,7 @@ const DeleteBtn = ({ project, ticketId, type }) => {
         ticketId={ticketId}
         type={type}
       />
-    </div>
+    </>
   );
 };
 
