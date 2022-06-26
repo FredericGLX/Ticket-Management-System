@@ -58,3 +58,11 @@ export const getTicketUsers = (projectId) => {
     return userArray;
   });
 };
+
+export const sortByDateAscending = (array) => {
+  array.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+};
+
+export const sortByDateDescending = (array) => {
+  array.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+};

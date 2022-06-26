@@ -7,21 +7,43 @@ import DeleteBtn from './Buttons/DeleteBtn';
 import { Link } from 'react-router-dom';
 import AddProjectBtn from './Buttons/AddProjectBtn';
 import PageLayout from './PageLayout';
-import { GrView } from 'react-icons/gr';
+import { sortByDateAscending, sortByDateDescending } from '../helper/helper';
+import { BiSortAlt2 } from 'react-icons/bi';
 
 const Projects = () => {
+  const order = !localStorage.getItem('projectSortOrder')
+    ? localStorage.setItem('projectSortOrder', false)
+    : localStorage.getItem('projectSortOrder');
+  const [clicked, setClicked] = useState(order);
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    ProjectService.getAll().then((response) => {
-      setProjects(response.data);
+    ProjectService.getAll().then((res) => {
+      const data = res.data;
+      if (order === 'true') sortByDateAscending(data);
+      setProjects(data);
     });
   }, []);
+
+  const handleSortBy = () => {
+    if (order === 'false') {
+      localStorage.setItem('projectSortOrder', true);
+      sortByDateAscending(projects);
+      setClicked(true);
+      setProjects(projects);
+    } else {
+      localStorage.setItem('projectSortOrder', false);
+      sortByDateDescending(projects);
+      setClicked(false);
+      setProjects(projects);
+    }
+  };
 
   return (
     <PageLayout addButton={<AddProjectBtn />}>
       <div className="tickets-container">
         <h1>Here are the projects:</h1>
+        Sort <BiSortAlt2 className="icon-sort" onClick={handleSortBy} />
         {projects.length > 0
           ? projects.map((project) => {
               return (

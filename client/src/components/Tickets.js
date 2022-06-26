@@ -7,16 +7,19 @@ import DeleteBtn from './Buttons/DeleteBtn';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { GrView } from 'react-icons/gr';
+import { sortByDateAscending } from '../helper/helper';
 
-const Tickets = ({ project }) => {
+const Tickets = ({ project, order }) => {
   const [tickets, setTickets] = useState([]);
   const { projectId } = useParams();
 
   useEffect(() => {
-    TicketService.getAll().then((response) => {
-      setTickets(response.data);
+    TicketService.getAll().then((res) => {
+      const data = res.data;
+      if (order === 'true') sortByDateAscending(data);
+      setTickets(data);
     });
-  }, []);
+  }, [order]);
 
   return (
     <div className="tickets-container">
