@@ -1,5 +1,7 @@
+const { pagination } = require('../middlewares');
+const tickets = require('../controllers/ticket.controller');
+
 module.exports = (app) => {
-  const tickets = require('../controllers/ticket.controller');
   var router = require('express').Router();
   // Create a new ticket
   router.post('/:id/ticket', tickets.create);

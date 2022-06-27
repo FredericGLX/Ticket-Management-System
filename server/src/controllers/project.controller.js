@@ -1,6 +1,5 @@
 const db = require('../models');
 const Project = db.projects;
-const mongoose = require('mongoose');
 
 // Create and Save a new Project
 exports.create = (req, res) => {
@@ -31,20 +30,7 @@ exports.create = (req, res) => {
 };
 // Retrieve all projects from the database.
 exports.findAll = (req, res) => {
-  const title = req.query.title;
-  var condition = title
-    ? { title: { $regex: new RegExp(title), $options: 'i' } }
-    : {};
-  Project.find(condition)
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message:
-          err.message || 'Some error occurred while retrieving tutorials.',
-      });
-    });
+  res.send(res.paginatedResults);
 };
 
 // Find a single Project with an id

@@ -1,10 +1,14 @@
+const projects = require('../controllers/project.controller');
+const pagination = require('../middlewares/pagination');
+const db = require('../models');
+const Project = db.projects;
+
 module.exports = (app) => {
-  const projects = require('../controllers/project.controller');
   var router = require('express').Router();
   // Create a new project
   router.post('/', projects.create);
   // Retrieve all project
-  router.get('/', projects.findAll);
+  router.get('/', pagination.paginatedResults(Project), projects.findAll);
   // Retrieve a single project with id
   router.get('/:id', projects.findOne);
   // Update a project with id
