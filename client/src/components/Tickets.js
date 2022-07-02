@@ -6,20 +6,33 @@ import { formatDate } from '../helper/helper';
 import DeleteBtn from './Buttons/DeleteBtn';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { GrView } from 'react-icons/gr';
 import { sortByDateAscending } from '../helper/helper';
+import Pagination from './Pagination';
 
 const Tickets = ({ project, order }) => {
   const [tickets, setTickets] = useState([]);
   const { projectId } = useParams();
+  const [resultsNumber, setResultsNumber] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const limit = 5;
+  const pageList = Math.ceil(resultsNumber / limit);
 
   useEffect(() => {
-    TicketService.getAll().then((res) => {
-      const data = res.data;
+    TicketService.getAll(currentPage, limit).then((res) => {
+      setResultsNumber(res.data.resultsNumber);
+      const data = res.data.results;
       if (order === 'true') sortByDateAscending(data);
       setTickets(data);
     });
-  }, [order]);
+  }, [currentPage]);
+
+  const handlePrevious = () => {
+    setCurrentPage(currentPage - 1);
+  };
+
+  const handleNext = () => {
+    setCurrentPage(currentPage + 1);
+  };
 
   return (
     <div className="tickets-container">
@@ -46,6 +59,16 @@ const Tickets = ({ project, order }) => {
               );
           })
         : ''}
+      {resultsNumber > limit ? (
+        <Pagination
+          currentPage={currentPage}
+          pageList={pageList}
+          handlePrevious={handlePrevious}
+          handleNext={handleNext}
+        />
+      ) : (
+        ''
+      )}
     </div>
   );
 };

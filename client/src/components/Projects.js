@@ -1,11 +1,13 @@
 import '../scss/variables.scss';
 import '../scss/components/tickets.scss';
+import '../scss/components/pagination.scss';
 import { useEffect, useState } from 'react';
 import ProjectService from '../services/project.service';
 import { formatDate } from '../helper/helper';
 import DeleteBtn from './Buttons/DeleteBtn';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import AddProjectBtn from './Buttons/AddProjectBtn';
+import Pagination from './Pagination';
 import PageLayout from './PageLayout';
 import { sortByDateAscending, sortByDateDescending } from '../helper/helper';
 import { BiSortAlt2 } from 'react-icons/bi';
@@ -16,14 +18,19 @@ const Projects = () => {
     : localStorage.getItem('projectSortOrder');
   const [clicked, setClicked] = useState(order);
   const [projects, setProjects] = useState([]);
+  const [resultsNumber, setResultsNumber] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const limit = 5;
+  const pageList = Math.ceil(resultsNumber / limit);
 
   useEffect(() => {
-    ProjectService.getAll().then((res) => {
-      const data = res.data;
+    ProjectService.getAll(currentPage, limit).then((res) => {
+      setResultsNumber(res.data.resultsNumber);
+      const data = res.data.results;
       if (order === 'true') sortByDateAscending(data);
       setProjects(data);
     });
-  }, []);
+  }, [currentPage]);
 
   const handleSortBy = () => {
     if (order === 'false') {
@@ -37,6 +44,14 @@ const Projects = () => {
       setClicked(false);
       setProjects(projects);
     }
+  };
+
+  const handlePrevious = () => {
+    setCurrentPage(currentPage - 1);
+  };
+
+  const handleNext = () => {
+    setCurrentPage(currentPage + 1);
   };
 
   return (
@@ -59,6 +74,16 @@ const Projects = () => {
               );
             })
           : ''}
+        {resultsNumber > limit ? (
+          <Pagination
+            currentPage={currentPage}
+            pageList={pageList}
+            handlePrevious={handlePrevious}
+            handleNext={handleNext}
+          />
+        ) : (
+          ''
+        )}
       </div>
     </PageLayout>
   );

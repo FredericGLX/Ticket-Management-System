@@ -25,13 +25,13 @@ const DeleteModal = ({
       const removedTicket = removeItemOnce(project.tickets, ticketId);
       project.tickets = removedTicket;
       ProjectService.update(project._id, project).then(() => {
-        navigate(`/projects/${project._id}`);
+        window.location.reload();
       });
     }
     if (type === 'project') {
       ProjectService.remove(project._id);
       TicketService.removeAllFromProject(project._id).then(() => {
-        navigate('/projects');
+        window.location.reload();
       });
     }
   };

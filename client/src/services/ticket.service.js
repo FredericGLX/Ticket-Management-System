@@ -1,7 +1,7 @@
 import http from '../helper/http-common';
 
-const getAll = () => {
-  return http.get('/projects/tickets');
+const getAll = (page, limit) => {
+  return http.get(`/projects/tickets?page=${page}&limit=${limit}`);
 };
 const get = (id) => {
   return http.get(`/projects/tickets/${id}`);

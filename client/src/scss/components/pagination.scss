@@ -1,0 +1,23 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+div {
+  margin: 0 6px;
+}
+button {
+  cursor: pointer;
+}
+.previous-part {
+  button {
+    margin-right: 8px;
+  }
+}
+.next-part {
+  button {
+    margin-left: 8px;
+  }
+}
+.currentPage {
+  font-weight: 700;
+}
+}
