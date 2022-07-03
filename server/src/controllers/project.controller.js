@@ -1,6 +1,13 @@
 const db = require('../models');
 const Project = db.projects;
 
+const getPagination = (page, size) => {
+  const limit = size ? +size : 5;
+  const offset = page ? page * limit : 0;
+
+  return { limit, offset };
+};
+
 // Create and Save a new Project
 exports.create = (req, res) => {
   // Validate request
@@ -28,9 +35,31 @@ exports.create = (req, res) => {
       });
     });
 };
+
 // Retrieve all projects from the database.
 exports.findAll = (req, res) => {
-  res.send(res.paginatedResults);
+  const { page, size, title } = req.query;
+  var condition = title
+    ? { title: { $regex: new RegExp(title), $options: 'i' } }
+    : {};
+
+  const { limit, offset } = getPagination(page, size);
+
+  Project.paginate(condition, { offset, limit })
+    .then((data) => {
+      res.send({
+        totalItems: data.totalDocs,
+        projects: data.docs,
+        totalPages: data.totalPages,
+        currentPage: data.page - 1,
+      });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message:
+          err.message || 'Some error occurred while retrieving projects.',
+      });
+    });
 };
 
 // Find a single Project with an id

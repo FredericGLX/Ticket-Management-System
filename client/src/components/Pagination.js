@@ -1,6 +1,12 @@
 import '../scss/components/pagination.scss';
 
-const Pagination = ({ currentPage, pageList, handlePrevious, handleNext }) => {
+const Pagination = ({
+  currentPage,
+  totalPages,
+  handlePrevious,
+  handleNext,
+}) => {
+  currentPage = currentPage + 1;
   return (
     <div className="pagination">
       {currentPage > 1 ? (
@@ -12,7 +18,7 @@ const Pagination = ({ currentPage, pageList, handlePrevious, handleNext }) => {
         ''
       )}
       <div className="currentPage">{currentPage}</div>
-      {currentPage < pageList ? (
+      {currentPage < totalPages ? (
         <div className="next-part">
           {currentPage + 1}
           <button onClick={handleNext}>Next</button>

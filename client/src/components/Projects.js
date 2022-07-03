@@ -19,14 +19,15 @@ const Projects = () => {
   const [clicked, setClicked] = useState(order);
   const [projects, setProjects] = useState([]);
   const [resultsNumber, setResultsNumber] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
-  const limit = 5;
-  const pageList = Math.ceil(resultsNumber / limit);
+  const [totalPages, setTotalPages] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
+  const size = 5;
 
   useEffect(() => {
-    ProjectService.getAll(currentPage, limit).then((res) => {
-      setResultsNumber(res.data.resultsNumber);
-      const data = res.data.results;
+    ProjectService.getAll(currentPage, size).then((res) => {
+      setResultsNumber(res.data.totalItems);
+      setTotalPages(res.data.totalPages);
+      const data = res.data.projects;
       if (order === 'true') sortByDateAscending(data);
       setProjects(data);
     });
@@ -74,10 +75,10 @@ const Projects = () => {
               );
             })
           : ''}
-        {resultsNumber > limit ? (
+        {resultsNumber > size ? (
           <Pagination
             currentPage={currentPage}
-            pageList={pageList}
+            totalPages={totalPages}
             handlePrevious={handlePrevious}
             handleNext={handleNext}
           />

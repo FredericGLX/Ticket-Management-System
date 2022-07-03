@@ -1,2 +1,3 @@
-GET http://localhost:5000/api/projects/tickets?page=1&limit=5
+GET http://localhost:5000/api/projects/tickets?page=0&size=5
+# GET http://localhost:5000/api/projects
 

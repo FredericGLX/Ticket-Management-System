@@ -2,6 +2,13 @@ const db = require('../models');
 const Ticket = db.tickets;
 const Project = db.projects;
 
+const getPagination = (page, size) => {
+  const limit = size ? +size : 5;
+  const offset = page ? page * limit : 0;
+
+  return { limit, offset };
+};
+
 // Create and Save a new Ticket
 exports.create = async (req, res) => {
   // Validate request
@@ -35,7 +42,28 @@ exports.create = async (req, res) => {
 
 // Retrieve all Tickets from the database.
 exports.findAll = (req, res) => {
-  res.send(res.paginatedResults);
+  const { page, size, title } = req.query;
+  var condition = title
+    ? { title: { $regex: new RegExp(title), $options: 'i' } }
+    : {};
+
+  const { limit, offset } = getPagination(page, size);
+
+  Ticket.paginate(condition, { offset, limit })
+    .then((data) => {
+      res.send({
+        totalItems: data.totalDocs,
+        tickets: data.docs,
+        totalPages: data.totalPages,
+        currentPage: data.page - 1,
+      });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message:
+          err.message || 'Some error occurred while retrieving projects.',
+      });
+    });
 };
 
 // Find a single Ticket with an id
