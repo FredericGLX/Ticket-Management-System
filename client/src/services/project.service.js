@@ -1,7 +1,11 @@
 import http from '../helper/http-common';
 
 const getAll = (page, size) => {
-  return http.get(`/projects?page=${page}&size=${size}`);
+  if (!page && !size) {
+    return http.get(`/projects`);
+  } else {
+    return http.get(`/projects?page=${page}&size=${size}`);
+  }
 };
 const get = (id) => {
   return http.get(`/projects/${id}`);

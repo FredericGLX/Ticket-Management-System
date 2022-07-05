@@ -14,21 +14,18 @@ const AssignedToMe = () => {
 
   useEffect(() => {
     ProjectService.getAll().then((res) => {
-      const assignedProjects = res.data.filter((project) =>
+      const assignedProjects = res.data.projects.filter((project) =>
         project.assigned.includes(currentUser.id)
       );
       setProjects(assignedProjects);
     });
     TicketService.getAll().then((res) => {
-      console.log(res.data);
-      const assignedTickets = res.data.filter((ticket) =>
+      const assignedTickets = res.data.tickets.filter((ticket) =>
         ticket.assigned.includes(currentUser.id)
       );
       setTickets(assignedTickets);
     });
   }, []);
-
-  console.log(projects, tickets);
 
   const toggle = (type) => {
     if (type === 'project' && projectList === false) {
