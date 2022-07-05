@@ -20,12 +20,15 @@ const AssignedToMe = () => {
       setProjects(assignedProjects);
     });
     TicketService.getAll().then((res) => {
+      console.log(res.data);
       const assignedTickets = res.data.filter((ticket) =>
         ticket.assigned.includes(currentUser.id)
       );
       setTickets(assignedTickets);
     });
   }, []);
+
+  console.log(projects, tickets);
 
   const toggle = (type) => {
     if (type === 'project' && projectList === false) {

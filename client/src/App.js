@@ -2,8 +2,8 @@ import Homepage from './components/Homepage';
 import Register from './components/Register';
 import Login from './components/Login';
 import Profile from './components/Profile';
-import Project from './components/Project';
-import Projects from './components/Projects';
+import Project from './components/TicketsPage';
+import ProjectsPage from './components/ProjectsPage';
 import ItemDetails from './components/ItemDetails';
 import AssignedToMe from './components/AssignedToMe';
 import PageNotFound from './components/PageNotFound';
@@ -25,7 +25,7 @@ const App = () => {
         />
         <Route path="/" element={<ProtectedRoutes />}>
           <Route path="home" element={<Homepage />} />
-          <Route path="projects" element={<Projects />} />
+          <Route path="projects" element={<ProjectsPage />} />
           <Route path="projects/:projectId" element={<Project />} />
           <Route
             path="projects/:projectId/details"
