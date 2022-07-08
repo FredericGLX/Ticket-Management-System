@@ -18,6 +18,9 @@ export const formatHour = (timestamp) => {
   return formattedHour;
 };
 
+export const capitalizeFirstLetter = (string) =>
+  string[0].toUpperCase() + string.slice(1).toLowerCase();
+
 export const removeItemOnce = (arr, value) => {
   var index = arr.indexOf(value);
   if (index > -1) {

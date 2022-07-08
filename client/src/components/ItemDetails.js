@@ -7,7 +7,11 @@ import TicketService from '../services/ticket.service';
 import ProjectService from '../services/project.service';
 import UserService from '../services/user.service';
 import SelectList from './SelectList';
-import { status, convertToReactSelectObject } from '../helper/helper';
+import {
+  status,
+  convertToReactSelectObject,
+  capitalizeFirstLetter,
+} from '../helper/helper';
 import { useFormik } from 'formik';
 import { useParams } from 'react-router-dom';
 import PageLayout from './PageLayout';
@@ -16,6 +20,7 @@ import DeleteBtn from './Buttons/DeleteBtn';
 const ItemDetails = ({ type }) => {
   const [allUsers, setAllUsers] = useState([]);
   const [assignedUsers, setAssignedUsers] = useState([]);
+  const [assignedStatus, setAssignedStatus] = useState([]);
   const [editable, setEditable] = useState(false);
   const [item, setItem] = useState([]);
   const { projectId, ticketId } = useParams();
@@ -67,6 +72,10 @@ const ItemDetails = ({ type }) => {
         // Sort Users array by alphabetical order
         userArray.sort((a, b) => a.firstName.localeCompare(b.firstName));
         setAssignedUsers(userArray);
+        setAssignedStatus({
+          value: res.data.status,
+          label: capitalizeFirstLetter(res.data.status),
+        });
         setItem(res.data);
       });
     }
@@ -134,7 +143,7 @@ const ItemDetails = ({ type }) => {
             ) : (
               <SelectList
                 options={convertToReactSelectObject(allUsers)}
-                defaultValue={item.assigned}
+                defaultValue={convertToReactSelectObject(assignedUsers)}
                 onChange={(assignedUser) => {
                   const newUsers = assignedUser.map((e) => e.value);
                   formik.setFieldValue('assigned', newUsers);
@@ -150,7 +159,7 @@ const ItemDetails = ({ type }) => {
             ) : (
               <SelectList
                 options={status}
-                defaultValue={item.status}
+                defaultValue={assignedStatus}
                 onChange={(status) =>
                   formik.setFieldValue('status', status.value)
                 }

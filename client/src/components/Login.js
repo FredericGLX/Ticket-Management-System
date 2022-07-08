@@ -70,6 +70,13 @@ const Register = () => {
             </button>
           </div>
         </form>
+        <p>
+          Don't have an accout?{' '}
+          <span className="clickHere" onClick={() => navigate('/signup')}>
+            Click here
+          </span>{' '}
+          to create one.
+        </p>
       </div>
     </div>
   );

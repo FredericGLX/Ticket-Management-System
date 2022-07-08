@@ -1,7 +1,7 @@
 import Select from 'react-select';
 // import { useField } from 'formik';
 
-const SelectList = ({ onChange, options, value, isMulti }) => {
+const SelectList = ({ onChange, options, defaultValue, value, isMulti }) => {
   const style = {
     control: (base) => ({
       ...base,
@@ -13,6 +13,7 @@ const SelectList = ({ onChange, options, value, isMulti }) => {
   return (
     <Select
       value={value}
+      defaultValue={defaultValue}
       options={options}
       onChange={onChange}
       isMulti={isMulti}

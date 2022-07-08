@@ -10,8 +10,9 @@ const register = (firstName, lastName, email, password) => {
   });
 };
 
-const login = async (email, password) => {
-  return await axios
+const login = (email, password) => {
+  console.log(email, password);
+  return axios
     .post(API_URL + 'signin', {
       email,
       password,
