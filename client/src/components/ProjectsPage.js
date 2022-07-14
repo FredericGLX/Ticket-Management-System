@@ -11,6 +11,7 @@ import { BiSortAlt2 } from 'react-icons/bi';
 import SearchBar from './SearchBar';
 import ProjectList from './ProjectList';
 import AddProjectForm from './Modals/AddProject/AddProjectForm';
+import AddItemMainBtn from './Buttons/AddItemMainBtn';
 
 const ProjectsPage = () => {
   const order = !localStorage.getItem('projectSortOrder')
@@ -84,6 +85,7 @@ const ProjectsPage = () => {
           </div>
         </div>
         <ProjectList projects={projects} />
+        <AddItemMainBtn title={'Add new project'} form={<AddProjectForm />} />
         {resultsNumber > size ? (
           <Pagination
             currentPage={currentPage}
@@ -92,7 +94,7 @@ const ProjectsPage = () => {
             handleNext={handleNext}
           />
         ) : (
-          ''
+          'Currently no projects'
         )}
       </div>
     </PageLayout>

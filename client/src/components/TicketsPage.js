@@ -7,6 +7,7 @@ import AddTicketForm from './Modals/Ticket/AddTicketForm';
 import AddItemBtn from './Buttons/AddItemBtn';
 import Pagination from './Pagination';
 import SearchBar from './SearchBar';
+import AddItemMainBtn from './Buttons/AddItemMainBtn';
 import ProjectService from '../services/project.service';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -93,6 +94,7 @@ const TicketsPage = () => {
           </div>
         </div>
         <TicketList project={projects} order={order} tickets={tickets} />
+        <AddItemMainBtn title={'Add new ticket'} form={<AddTicketForm />} />
         {resultsNumber > size ? (
           <Pagination
             currentPage={currentPage}
