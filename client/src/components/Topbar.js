@@ -31,6 +31,15 @@ const Navbar = () => {
             <li>
               <Link to={'/profile'}>Profile</Link>
             </li>
+            <div className="mobile-nav">
+              <li className="side-links">
+                <Link to={'/projects'}>Projects</Link>
+              </li>
+
+              <li className="side-links">
+                <Link to={'/assigned'}>Assigned</Link>
+              </li>
+            </div>
 
             <li>
               <Link to={'/login'} onClick={logOut}>
