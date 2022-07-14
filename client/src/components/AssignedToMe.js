@@ -1,3 +1,4 @@
+import '../scss/components/assignedToMe.scss';
 import AuthService from '../services/auth.service';
 import PageLayout from './PageLayout';
 import { useState, useEffect } from 'react';
@@ -42,20 +43,30 @@ const AssignedToMe = () => {
 
   return (
     <PageLayout>
-      <h1>Assigned to me</h1>
-      <p>You currently have {projects.length} projects assigned to you.</p>
-      {projects.length > 0 && (
-        <p onClick={() => toggle('project')}>See assigned projects</p>
-      )}
-      <div className="items-container">
-        {projectList && <AssignedItems items={projects} type={'project'} />}
-      </div>
-      <p>You currently have {tickets.length} tickets assigned to you.</p>
-      {tickets.length > 0 && (
-        <p onClick={() => toggle('ticket')}>See assigned tickets</p>
-      )}
-      <div className="items-container">
-        {ticketList && <AssignedItems items={tickets} type={'ticket'} />}
+      <div className="assigned-container">
+        <h1>Assigned to me</h1>
+        <div className="assigned-projects">
+          <p>You currently have {projects.length} projects assigned to you.</p>
+          {projects.length > 0 && (
+            <p className="clickable" onClick={() => toggle('project')}>
+              Click here to see assigned projects
+            </p>
+          )}
+          <div className="items-container">
+            {projectList && <AssignedItems items={projects} type={'project'} />}
+          </div>
+        </div>
+        <div className="assigned-tickets">
+          <p>You currently have {tickets.length} tickets assigned to you.</p>
+          {tickets.length > 0 && (
+            <p className="clickable" onClick={() => toggle('ticket')}>
+              Click here to see assigned tickets
+            </p>
+          )}
+          <div className="items-container">
+            {ticketList && <AssignedItems items={tickets} type={'ticket'} />}
+          </div>
+        </div>
       </div>
     </PageLayout>
   );

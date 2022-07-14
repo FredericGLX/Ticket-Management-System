@@ -2,9 +2,11 @@ import '../scss/components/sidebar.scss';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import AuthService from '../services/auth.service';
+import { GiHamburgerMenu } from 'react-icons/gi';
 
 const Navbar = ({ addButton }) => {
   const [currentUser, setCurrentUser] = useState(undefined);
+  const [active, setActive] = useState(true);
 
   useEffect(() => {
     const user = AuthService.getCurrentUser();
@@ -13,20 +15,34 @@ const Navbar = ({ addButton }) => {
     }
   }, []);
 
-  return (
-    <div className="navbar-container">
-      <nav>
-        <div>
-          <li>{addButton}</li>
-        </div>
+  const handleActive = () => {
+    if (active === true) {
+      setActive(false);
+    } else {
+      setActive(true);
+    }
+  };
 
+  const hamburgerIcon = (
+    <span onClick={() => handleActive()}>
+      <GiHamburgerMenu className={'hamburger-icon'} size={'1.6rem'} />
+    </span>
+  );
+
+  return active ? (
+    <div className={`navbar-container-${active ? 'active' : 'inactive'}`}>
+      <nav>
+        {hamburgerIcon}
+        <>
+          <li>{addButton}</li>
+        </>
         {currentUser ? (
           <>
-            <li>
+            <li className="side-links">
               <Link to={'/projects'}>Projects</Link>
             </li>
 
-            <li>
+            <li className="side-links">
               <Link to={'/assigned'}>Assigned to me</Link>
             </li>
           </>
@@ -42,6 +58,8 @@ const Navbar = ({ addButton }) => {
         )}
       </nav>
     </div>
+  ) : (
+    <div className="side-icon-inactive">{hamburgerIcon}</div>
   );
 };
 

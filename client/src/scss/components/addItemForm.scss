@@ -1,39 +1,41 @@
 .issue-form-container {
+  font-size: 1.4rem;
     h1 {
-      margin-top: 1rem;
-      color: #333;
+      margin-top: 1.6rem;
       text-align: center;
       font-weight: 600;
       }
-
       .issue-form {
         display: flex;
         flex-direction: column;
         margin: 1rem 2rem;
       }
-
-      input, textarea {
+      label {
+        margin-bottom: 1px;
+      }
+      input, textarea, .form-field {
         margin-bottom: 1rem;
+      }
+      label {
+        font-weight: 600;
+      }
+      input, textarea {
         outline: none;
       }
-
       .input-description {
         height: 16vh;
       }
-
-      // .react-select-container { 
-      //   #react-select-2-listbox {
-      //     font-size: 14px;
-      //   }
-      // }
-
+      .submit-container {
+        margin: 1rem 0;
+        text-align: center;
       .form-submit-btn {
+        position: relative;
         background-color: #fff;
-        height: 2rem;
-        margin-top: 1rem;
-        max-width: 5rem;
+        font-size: 1.5rem;
+        height: 30px;
+        width: 80px;
         border: 1px solid #333;
-        border-radius: 5px;
+        border-radius: 3px;
         color: #333;
         box-shadow: 0px 2px 3px #ddd;
         cursor: pointer;
@@ -46,6 +48,8 @@
           position: relative;
           top: 1px;
         }
-        
       }
+    }
   }
+
+  

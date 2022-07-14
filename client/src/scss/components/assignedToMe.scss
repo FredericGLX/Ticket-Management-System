@@ -1,0 +1,30 @@
+.assigned-container {
+  font-size: 1.4rem;
+  color: #333;
+  
+  h1 {
+    color: #0a2351;
+    font-weight: 600;
+    font-size: 2rem;
+    margin: 1rem 0;
+  }
+
+  .assigned-projects, .assigned-tickets {
+    margin-bottom: 1rem;
+
+  }
+
+  .clickable {
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .items-container {
+    margin: 1rem 0;
+  }
+
+  .item-title {
+    color: #0a2351;
+    font-weight: 600;
+  }
+}

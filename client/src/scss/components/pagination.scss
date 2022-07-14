@@ -1,22 +1,24 @@
 .pagination {
   display: flex;
   justify-content: center;
+  // align-items: center;
+  font-size: 1.2rem;
 div {
   margin: 0 6px;
+  display: flex;
+  align-items: center;
 }
-button {
-  cursor: pointer;
-}
-.previous-part {
-  button {
-    margin-right: 8px;
-  }
-}
+
 .next-part {
-  button {
-    margin-left: 8px;
-  }
+  display: flex;
+  align-items: center;
 }
+
+.page-icon {
+  cursor: pointer;
+  margin: 2px 3px 0 3px;
+}
+
 .currentPage {
   font-weight: 700;
 }

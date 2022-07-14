@@ -1,8 +1,8 @@
-POST  http://localhost:5000/api/auth/signin HTTP/1.1
+DELETE   http://localhost:5000/api/projects HTTP/1.1
 
-content-type: application/json
-{
-    "email": "fredo@fredo.com",
-    "password": "frederic"
-}
+# content-type: application/json
+# {
+#     "email": "fredo@fredo.com",
+#     "password": "frederic"
+# }
 

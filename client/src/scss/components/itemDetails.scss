@@ -1,12 +1,34 @@
 .item-details-container {
-  margin: 1rem;
+  font-size: 1.4rem;
   .item-title {
     text-align: center;
+    color: #0a2351;
+    margin: 2rem 0;
+  }
+
+  .edit-delete {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    div {
+      margin: 0 2px;
+    }
+  }
+
+  .field-assigned, .field-status, .field-creator, .field-edit, .field-description {
+    font-weight: 600;
+  }
+
+  .item-status {
     margin-bottom: 1rem;
   }
-  .item-status, .item-description, .item-edit {
-    margin-bottom: 1rem;
+  .item-createdAt {
+    margin-top: 1rem;
+    span {
+      font-weight: 600;
+    }
   }
+
 }                
 
 .view-btn, .item-edit, .edit-btns button {
@@ -39,4 +61,3 @@
   width: 100%;
   height: 6rem;
 }
-

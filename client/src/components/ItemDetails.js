@@ -129,14 +129,17 @@ const ItemDetails = ({ type }) => {
               />
             )}
           </h1>
-          <div className="item-users">
-            Assigned to:
+          <div className="item-assigned">
+            <span className="field-assigned">Assigned to: {''}</span>
             {!editable ? (
               <>
                 {assignedUsers.map(
-                  (user) =>
+                  (user, index) =>
                     `${user.firstName} ${user.lastName}${
-                      assignedUsers.length > 1 ? ', ' : ''
+                      assignedUsers.length > 1 &&
+                      index !== assignedUsers.length - 1
+                        ? ', '
+                        : ''
                     }`
                 )}
               </>
@@ -153,7 +156,7 @@ const ItemDetails = ({ type }) => {
             )}
           </div>
           <div className="item-status">
-            Status:{' '}
+            <span className="field-status">Status: </span>
             {!editable && item.status ? (
               <>{item.status.charAt(0).toUpperCase() + item.status.slice(1)}</>
             ) : (
@@ -167,41 +170,48 @@ const ItemDetails = ({ type }) => {
               />
             )}
           </div>
-          <div className="item-edit">
-            Edit
-            <FiEdit className="edit-icon" onClick={handleEditable} />
+          <div className="edit-delete">
+            <div className="item-edit">
+              <span className="field-edit">Edit</span>
+              <FiEdit className="edit-icon" onClick={handleEditable} />
+            </div>
+            <div className="item-delete">
+              <DeleteBtn
+                type={type}
+                ticketId={ticketId}
+                project={type === 'project' ? item : ''}
+                icon={false}
+              />
+            </div>
           </div>
-          <div className="item-delete">
-            Delete{' '}
-            <DeleteBtn
-              type={type}
-              ticketId={ticketId}
-              project={type === 'project' ? item : ''}
-              icon={false}
-            />
+
+          <div className="item-descriptipon">
+            <span className="field-description">Description: </span>
+            <p
+              className={`${editable ? 'edit-mode' : ' '}`}
+              value={formik.values.description}
+              onChange={formik.handleChange}
+            >
+              {!editable ? (
+                <p>{item.description}</p>
+              ) : (
+                <>
+                  <textarea
+                    type="text"
+                    name="description"
+                    className="description-editable"
+                    defaultValue={item.description}
+                    onChange={formik.handleChange}
+                  />
+                </>
+              )}
+            </p>
           </div>
-          <p
-            className={`item-description ${editable ? 'edit-mode' : ' '}`}
-            value={formik.values.description}
-            onChange={formik.handleChange}
-          >
-            {!editable ? (
-              <>{item.description}</>
-            ) : (
-              <>
-                <textarea
-                  type="text"
-                  name="description"
-                  className="description-editable"
-                  defaultValue={item.description}
-                  onChange={formik.handleChange}
-                />
-              </>
-            )}
-          </p>
+
           <p className="item-createdAt">
-            Created on {formatDate(item.createdAt)} at{' '}
-            {formatHour(item.createdAt)} by {item.authorName}
+            <span>Created on </span> {formatDate(item.createdAt)} at{' '}
+            {formatHour(item.createdAt)} by{' '}
+            <span className="field-creator">{item.authorName}</span>
           </p>
           {editable ? (
             <div className="edit-btns">

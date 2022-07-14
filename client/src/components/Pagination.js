@@ -1,4 +1,6 @@
 import '../scss/components/pagination.scss';
+import { GrFormNextLink } from 'react-icons/gr';
+import { GrFormPreviousLink } from 'react-icons/gr';
 
 const Pagination = ({
   currentPage,
@@ -11,7 +13,9 @@ const Pagination = ({
     <div className="pagination">
       {currentPage > 1 ? (
         <div className="previous-part">
-          <button onClick={handlePrevious}>Prev</button>
+          <span onClick={handlePrevious}>
+            <GrFormPreviousLink className="page-icon" size={'1.6rem'} />
+          </span>
           {currentPage - 1}
         </div>
       ) : (
@@ -21,7 +25,9 @@ const Pagination = ({
       {currentPage < totalPages ? (
         <div className="next-part">
           {currentPage + 1}
-          <button onClick={handleNext}>Next</button>
+          <span onClick={handleNext}>
+            <GrFormNextLink className="page-icon" size={'1.6rem'} />
+          </span>
         </div>
       ) : (
         ''

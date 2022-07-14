@@ -1,9 +1,6 @@
-import ProjectService from '../services/project.service';
-import { useEffect, useState } from 'react';
-
 const SearchBar = ({ handleChange }) => {
   return (
-    <div>
+    <div className="searchbar">
       <input placeholder="Search" onChange={handleChange} />
     </div>
   );

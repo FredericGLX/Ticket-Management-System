@@ -1,5 +1,6 @@
-import '../../../scss/variables.scss';
+import '../../../scss/general.scss';
 import '../../../scss/components/deletemodal.scss';
+import ReactDOM from 'react-dom';
 import TicketService from '../../../services/ticket.service';
 import ProjectService from '../../../services/project.service';
 import { removeItemOnce } from '../../../helper/helper';
@@ -36,7 +37,7 @@ const DeleteModal = ({
     }
   };
 
-  return (
+  return ReactDOM.createPortal(
     <div className="modal-overlay">
       <div className="delete-modal-container" ref={domNodeRef}>
         <p>Are you sure you want to delete this?</p>
@@ -49,7 +50,8 @@ const DeleteModal = ({
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.getElementById('portal')
   );
 };
 

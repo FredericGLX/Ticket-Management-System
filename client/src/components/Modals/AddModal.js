@@ -1,11 +1,13 @@
 import '../../scss/components/addmodal.scss';
-import '../../scss/variables.scss';
+import '../../scss/general.scss';
+import ReactDOM from 'react-dom';
+
 import { IoIosCloseCircleOutline } from 'react-icons/io';
 
 const AddModal = ({ open, onClose, children, domNodeRef }) => {
   if (!open) return null;
 
-  return (
+  return ReactDOM.createPortal(
     <div className="modal-overlay">
       <div className="modal-container" ref={domNodeRef}>
         <IoIosCloseCircleOutline
@@ -18,7 +20,8 @@ const AddModal = ({ open, onClose, children, domNodeRef }) => {
         />
         {children}
       </div>
-    </div>
+    </div>,
+    document.getElementById('portal')
   );
 };
 

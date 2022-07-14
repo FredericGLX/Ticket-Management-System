@@ -1,5 +1,5 @@
-import '../scss/variables.scss';
-import '../scss/components/tickets.scss';
+import '../scss/general.scss';
+import '../scss/components/items.scss';
 import { formatDate } from '../helper/helper';
 import DeleteBtn from './Buttons/DeleteBtn';
 import { useParams } from 'react-router-dom';
@@ -9,17 +9,22 @@ const TicketList = ({ tickets, project }) => {
   const { projectId } = useParams();
 
   return (
-    <div className="tickets-container">
+    <div className="items-container">
       {tickets.length > 0
         ? tickets.map((ticket) => {
             if (ticket.project === projectId)
               return (
-                <div className="ticket-container" key={ticket._id}>
-                  <span>{formatDate(ticket.createdAt)}</span>
-                  <span>{ticket.title}</span>
-                  <span>{ticket.authorName}</span>
+                <div className="item-container" key={ticket._id}>
+                  <span className="item-date">
+                    {formatDate(ticket.createdAt)}
+                  </span>
+                  <span className="item-title">{ticket.title}</span>
+                  <span className="item-details">{ticket.authorName}</span>
                   <>
-                    <Link to={`/projects/${projectId}/${ticket._id}`}>
+                    <Link
+                      to={`/projects/${projectId}/${ticket._id}`}
+                      className="item-details"
+                    >
                       Details
                     </Link>
                     <DeleteBtn
@@ -32,7 +37,7 @@ const TicketList = ({ tickets, project }) => {
                 </div>
               );
           })
-        : ''}
+        : 'Cannot find tickets'}
     </div>
   );
 };

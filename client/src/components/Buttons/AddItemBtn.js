@@ -1,10 +1,9 @@
 import '../../scss/components/buttons.scss';
 import { useState } from 'react';
 import AddModal from '../Modals/AddModal';
-import AddProjectForm from '../Modals/AddProject/AddProjectForm';
 import useClickOutside from '../../hooks/useClickOutside';
 
-const AddProjectBtn = () => {
+const AddItemBtn = ({ title, form }) => {
   const [isOpen, setIsOpen] = useState(false);
   const onClose = () => {
     setIsOpen(false);
@@ -16,14 +15,14 @@ const AddProjectBtn = () => {
 
   return (
     <>
-      <button className="btn-add-issue" onClick={() => setIsOpen(true)}>
-        Add Project
+      <button className="btn-add-item" onClick={() => setIsOpen(true)}>
+        {title}
       </button>
       <AddModal open={isOpen} onClose={onClose} domNodeRef={domNode}>
-        <AddProjectForm />
+        {form}
       </AddModal>
     </>
   );
 };
 
-export default AddProjectBtn;
+export default AddItemBtn;

@@ -1,4 +1,4 @@
-import '../scss/variables.scss';
+import '../scss/general.scss';
 import PageLayout from './PageLayout';
 
 const PageNotFound = () => {

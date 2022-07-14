@@ -1,5 +1,5 @@
 import '../scss/components/auth.scss';
-import '../scss/variables.scss';
+import '../scss/general.scss';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -70,13 +70,15 @@ const Register = () => {
             </button>
           </div>
         </form>
-        <p>
-          Don't have an accout?{' '}
-          <span className="clickHere" onClick={() => navigate('/signup')}>
-            Click here
-          </span>{' '}
-          to create one.
-        </p>
+        <div className="have-account">
+          <p>Don't have an account? </p>
+          <p>
+            <span className="clickHere" onClick={() => navigate('/signup')}>
+              Click here
+            </span>{' '}
+            to create one.
+          </p>
+        </div>
       </div>
     </div>
   );

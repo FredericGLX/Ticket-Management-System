@@ -1,5 +1,5 @@
-import '../../../scss/components/addTicketForm.scss';
-import '../../../scss/variables.scss';
+import '../../../scss/components/addItemForm.scss';
+import '../../../scss/general.scss';
 import TicketService from '../../../services/ticket.service';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -78,7 +78,7 @@ const AddTicketForm = () => {
           onChange={formik.handleChange}
         />
         {formik.errors.description ? formik.errors.description : null}
-        Assign to:
+        <label>Assign to:</label>
         <SelectList
           options={convertToReactSelectObject(users)}
           value={formik.values.assigned}
@@ -87,16 +87,21 @@ const AddTicketForm = () => {
           }
           isMulti={true}
         />
-        Status:
-        <SelectList
-          options={status}
-          value={formik.values.status}
-          onChange={(status) => formik.setFieldValue('status', status)}
-          isMulti={false}
-        />
-        <button className="form-submit-btn" type="submit">
-          Submit
-        </button>
+        <label>Status:</label>
+        <div className="form-field">
+          <SelectList
+            className="form-status-field"
+            options={status}
+            value={formik.values.status}
+            onChange={(status) => formik.setFieldValue('status', status)}
+            isMulti={false}
+          />
+        </div>
+        <div className="submit-container">
+          <button className="form-submit-btn" type="submit">
+            Submit
+          </button>
+        </div>
       </form>
     </div>
   );

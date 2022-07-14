@@ -1,13 +1,11 @@
-import '../scss/variables.scss';
-import AddProjectBtn from './Buttons/AddProjectBtn';
+import '../scss/general.scss';
+import AddItemBtn from './Buttons/AddItemBtn';
 import PageLayout from './PageLayout';
+import AddProjectForm from './Modals/AddProject/AddProjectForm';
+import ProjectsPage from './ProjectsPage';
 
 const Homepage = () => {
-  return (
-    <PageLayout addButton={<AddProjectBtn />}>
-      <h1>Welcome to the page</h1>
-    </PageLayout>
-  );
+  return <ProjectsPage />;
 };
 
 export default Homepage;

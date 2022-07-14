@@ -1,5 +1,5 @@
 import '../scss/components/auth.scss';
-import '../scss/variables.scss';
+import '../scss/general.scss';
 import { useNavigate, Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -56,7 +56,7 @@ const Register = () => {
   return (
     <div className="login-container">
       <div className="login-form-container">
-        <h1>Register</h1>
+        <h1>Sign up</h1>
 
         <form className="form-container" onSubmit={formik.handleSubmit}>
           <div>
@@ -125,13 +125,15 @@ const Register = () => {
             </button>
           </div>
         </form>
-        <p>
-          Already have an account?{' '}
-          <span className="clickHere" onClick={() => navigate('/login')}>
-            Click here
-          </span>{' '}
-          to sign in.
-        </p>
+        <div className="have-account">
+          <p>Already have an account? </p>
+          <p>
+            <span className="clickHere" onClick={() => navigate('/login')}>
+              Click here
+            </span>{' '}
+            to sign in.
+          </p>
+        </div>
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { GiClick } from 'react-icons/gi';
 
 const AssignedItems = ({ items, type }) => {
   return (
@@ -6,15 +7,17 @@ const AssignedItems = ({ items, type }) => {
       {type === 'project' &&
         items.map((item) => (
           <div key={item._id}>
-            {item.title}
-            <Link to={`/projects/${item._id}/details`}>Details</Link>
+            <Link to={`/projects/${item._id}/details`}>
+              <span className="item-title">{item.title}</span>
+            </Link>
           </div>
         ))}
       {type === 'ticket' &&
         items.map((item) => (
           <div key={item._id}>
-            {item.title}
-            <Link to={`/projects/${item.project}/${item._id}`}>Details</Link>
+            <Link to={`/projects/${item.project}/${item._id}`}>
+              <span className="item-title">{item.title}</span>
+            </Link>
           </div>
         ))}
     </>

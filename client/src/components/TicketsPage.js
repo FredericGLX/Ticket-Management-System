@@ -1,10 +1,10 @@
-import '../scss/variables.scss';
-import '../scss/components/tickets.scss';
-import Sidebar from './Sidebar';
-import Topbar from './Topbar';
+import '../scss/general.scss';
+import '../scss/components/items.scss';
+import PageLayout from './PageLayout';
 import TicketList from './TicketList';
 import TicketService from '../services/ticket.service';
-import AddTicketBtn from './Buttons/AddTicketBtn';
+import AddTicketForm from './Modals/Ticket/AddTicketForm';
+import AddItemBtn from './Buttons/AddItemBtn';
 import Pagination from './Pagination';
 import SearchBar from './SearchBar';
 import ProjectService from '../services/project.service';
@@ -75,26 +75,36 @@ const TicketsPage = () => {
   };
 
   return (
-    <div>
-      <Topbar />
-      <Sidebar addButton={<AddTicketBtn />} />
-      <div className="content-area">
-        <h1>Here are the tickets</h1>
-        <SearchBar handleChange={handleChange} />
-        Sort <BiSortAlt2 className="icon-sort" onClick={handleSortBy} />
+    <PageLayout
+      addButton={<AddItemBtn title={'Add Ticket'} form={<AddTicketForm />} />}
+    >
+      <div className="page-content">
+        <div className="content-header">
+          <h1>Created tickets</h1>
+          <div className="right-content">
+            <SearchBar handleChange={handleChange} />
+            <div className="sort-option">
+              <BiSortAlt2
+                className="icon-sort"
+                onClick={handleSortBy}
+                size={'2rem'}
+              />
+            </div>
+          </div>
+        </div>
         <TicketList project={projects} order={order} tickets={tickets} />
+        {resultsNumber > size ? (
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            handlePrevious={handlePrevious}
+            handleNext={handleNext}
+          />
+        ) : (
+          ''
+        )}
       </div>
-      {resultsNumber > size ? (
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          handlePrevious={handlePrevious}
-          handleNext={handleNext}
-        />
-      ) : (
-        ''
-      )}
-    </div>
+    </PageLayout>
   );
 };
 

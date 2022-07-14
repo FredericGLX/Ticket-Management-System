@@ -1,5 +1,5 @@
-import '../../../scss/components/addTicketForm.scss';
-import '../../../scss/variables.scss';
+import '../../../scss/components/addItemForm.scss';
+import '../../../scss/general.scss';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProjectService from '../../../services/project.service';
@@ -9,7 +9,7 @@ import * as Yup from 'yup';
 import SelectList from '../../SelectList';
 import { convertToReactSelectObject, status } from '../../../helper/helper';
 
-const AddProjectForm = ({ open, onClose, children }) => {
+const AddProjectForm = () => {
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
 
@@ -66,25 +66,32 @@ const AddProjectForm = ({ open, onClose, children }) => {
           onChange={formik.handleChange}
         />
         {formik.errors.description ? formik.errors.description : null}
-        Assign to:
-        <SelectList
-          options={convertToReactSelectObject(users)}
-          value={formik.values.assigned}
-          onChange={(assignedUser) =>
-            formik.setFieldValue('assigned', assignedUser)
-          }
-          isMulti={true}
-        />
-        Status:
-        <SelectList
-          options={status}
-          value={formik.values.status}
-          onChange={(status) => formik.setFieldValue('status', status)}
-          isMulti={false}
-        />
-        <button className="form-submit-btn" type="submit">
-          Submit
-        </button>
+        <label>Assign to:</label>
+        <div className="form-field">
+          <SelectList
+            options={convertToReactSelectObject(users)}
+            value={formik.values.assigned}
+            onChange={(assignedUser) =>
+              formik.setFieldValue('assigned', assignedUser)
+            }
+            isMulti={true}
+          />
+        </div>
+        <label>Status:</label>
+        <div className="form-field">
+          <SelectList
+            className="form-status-field"
+            options={status}
+            value={formik.values.status}
+            onChange={(status) => formik.setFieldValue('status', status)}
+            isMulti={false}
+          />
+        </div>
+        <div className="submit-container">
+          <button className="form-submit-btn" type="submit">
+            Submit
+          </button>
+        </div>
       </form>
     </div>
   );
