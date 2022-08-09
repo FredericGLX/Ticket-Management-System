@@ -2,7 +2,7 @@
 
 .items-container {
   width: 100%;
-  font-size: 1.4rem;
+  font-size: 1.8rem;
 }
 
 .content-header {
@@ -19,7 +19,7 @@
     margin: 1rem 3rem;
     font-weight: 600;
     color: #0a2351;
-    font-size: 2.4rem;
+    font-size: 2.8rem;
     @include respond(small) {
       margin: 0 0 5px 0;
     }
@@ -80,9 +80,14 @@ a {
   .item-date {
     font-weight: 600;
     color: #0a2351;
+    @include respond(small) {
+      display: none;
+    }
+
   }
   .item-title, .item-see-tickets, .item-details {
     color: #777;
+    
   }
   .item-see-tickets, .item-details {
     font-weight: 600;

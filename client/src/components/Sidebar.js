@@ -25,7 +25,7 @@ const Navbar = ({ addButton }) => {
 
   const hamburgerIcon = (
     <span onClick={() => handleActive()}>
-      <GiHamburgerMenu className={'hamburger-icon'} size={'1.6rem'} />
+      <GiHamburgerMenu className={'hamburger-icon'} size={'1.9rem'} />
     </span>
   );
 

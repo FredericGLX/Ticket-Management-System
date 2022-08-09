@@ -1,3 +1,5 @@
+import '../scss/components/searchbar.scss';
+
 const SearchBar = ({ handleChange }) => {
   return (
     <div className="searchbar">
