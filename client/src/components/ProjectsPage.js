@@ -22,7 +22,7 @@ const ProjectsPage = () => {
   const [resultsNumber, setResultsNumber] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
-  const size = 6;
+  const size = 7;
   const [query, setQuery] = useState('');
 
   useEffect(() => {

@@ -21,7 +21,7 @@ const Navbar = () => {
 
   return (
     <header className="topbar-container">
-      <div className="topbar-left">TMS</div>
+      {/* <div className="topbar-left">TMS</div> */}
       <div className="topbar-middle">
         <li>
           <Link to={'/home'}>Home</Link>

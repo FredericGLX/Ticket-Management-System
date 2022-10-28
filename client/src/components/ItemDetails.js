@@ -210,8 +210,9 @@ const ItemDetails = ({ type }) => {
 
           <p className="item-createdAt">
             <span>Created on </span> {formatDate(item.createdAt)} at{' '}
-            {formatHour(item.createdAt)} by{' '}
-            <span className="field-creator">{item.authorName}</span>
+            {formatHour(item.createdAt)}
+            {/* by{' '} */}
+            {/* <span className="field-creator">{item.authorName}</span> */}
           </p>
           {editable ? (
             <div className="edit-btns">
